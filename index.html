@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recursion Lab – Understand Recursion. Visualize Every Call.</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="logo">RECURSION <b>LAB</b></div><div><button data-go="top">Home</button><button data-go="lab">Visualizer</button><button data-go="about">About</button></div></nav>
+
+<header class="hero" id="top">
+ <div class="ht">
+  <h1>RECURSION <span>LAB</span></h1>
+  <p>Understand Recursion. Visualize Every Call. Watch real C functions push onto the call stack, hit the base case, and return their values in 3D.</p>
+  <button class="cta" data-go="lab">Launch Visualizer</button><button class="cta o" data-go="about">How it works</button>
+  <div class="how"><div><b>1 · Call</b>Each call becomes a 3D block on the stack.</div><div><b>2 · Base case</b>The last call glows bright green.</div><div><b>3 · Return</b>Blocks pop off in LIFO order.</div></div>
+ </div>
+ <div class="tower" aria-hidden="true"><div>factorial(4)</div><div>factorial(3)</div><div>factorial(2)</div><div>factorial(1)</div></div>
+</header>
+
+<main class="lab" id="lab">
+ <section class="col">
+  <div class="glass"><h2>Algorithm</h2><div class="tabs" id="tabs"></div>
+   <div class="badge" id="badge">Checking C → WebAssembly…</div></div>
+  <div class="glass"><h2>Input</h2><label for="inp" id="hint"></label>
+   <div class="row"><input id="inp" type="number" step="1" inputmode="numeric"><button class="btn" id="start">Start Visualization</button></div>
+   <div class="err" id="err" role="alert"></div></div>
+  <div class="glass" style="flex:1;display:flex;flex-direction:column;min-height:0"><h2>Algorithm</h2><div class="code" id="code"></div></div>
+ </section>
+ <section class="stage" id="stage">
+  <canvas id="c"></canvas>
+  <div class="hud"><div class="t" id="title">FACTORIAL</div><div class="m" id="msg">Press Start Visualization. Drag to orbit, scroll to zoom.</div></div>
+  <div class="banner" id="banner">BASE CASE REACHED</div>
+  <div class="glass ctrl">
+   <button id="bPrev" disabled>⏮ Prev</button><button id="bPlay" class="p" disabled>▶ Play</button><button id="bNext" disabled>Next ⏭</button><button id="bReset" disabled>Reset</button>
+   <div class="sp"><label for="spd">Speed</label><input id="spd" type="range" min="0.25" max="3" step="0.25" value="1"><span id="spv">1x</span></div>
+  </div>
+ </section>
+ <section class="col">
+  <div class="glass stack"><h2>Call Stack (LIFO)</h2><div class="op" id="op">–</div><div id="stk"><div class="empty">Stack is empty</div></div></div>
+  <div class="glass"><h2>Statistics</h2><div class="stats">
+   <div class="stat"><b id="sCalls">0</b><span>TOTAL CALLS</span></div><div class="stat"><b id="sDepth">0</b><span>STACK DEPTH</span></div>
+   <div class="stat"><b id="sMax">0</b><span>MAX DEPTH</span></div><div class="stat"><b id="sEv">0</b><span>EVENTS FROM C</span></div>
+   <div class="stat w"><span>RETURN VALUES</span><div class="rets" id="sRets">–</div></div>
+   <div class="stat w res"><span>FINAL RESULT</span><b id="sRes">–</b></div></div></div>
+ </section>
+</main>
+
+<dialog id="about" style="background:var(--panel);color:var(--tx);border:1px solid var(--line);border-radius:18px;max-width:480px;padding:24px">
+ <h2>About Recursion Lab</h2>
+ <p style="line-height:1.6;color:var(--tx2)">The recursive functions are written in C. They report FUNCTION_CALL, STACK_PUSH, BASE_CASE, RETURN and STACK_POP events. JavaScript reads those events and drives the Three.js scene, so every block you see is a real call.</p>
+ <form method="dialog"><button class="btn">Close</button></form></dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
